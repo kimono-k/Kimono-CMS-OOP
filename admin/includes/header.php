@@ -1,3 +1,6 @@
+<?php ob_start(); # Output buffering for this specific header ?>
+<?php include("init.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

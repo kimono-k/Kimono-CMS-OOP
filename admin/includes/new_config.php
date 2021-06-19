@@ -9,6 +9,7 @@ $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($connection) {
     echo "The database is successfully connected by Kimono";
+} else {
+    echo "The database has failed to connected. Please check if the data is correctly filled in";
 }
-
 ?>
