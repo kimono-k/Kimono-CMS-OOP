@@ -11,7 +11,7 @@ class Database
         if (mysqli_connect_errno()) {
             die("Database connection failed" . mysqli_error());
         } else {
-            echo "OOP swag database created wuuutt";
+            echo "Kimono's OOP database connection is fully functioning!";
         }
     }
 }
