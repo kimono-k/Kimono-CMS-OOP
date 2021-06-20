@@ -1,3 +1,9 @@
+<?php
+if ($database->connection) {
+    echo "The database is connected";
+}
+?>
+
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="row">

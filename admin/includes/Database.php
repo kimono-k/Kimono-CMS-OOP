@@ -3,7 +3,11 @@ require_once "new_config.php";
 
 class Database
 {
-    private $connection;
+    public $connection; # maybe protected, we'll see.
+
+    function __construct() {
+        $this->open_db_connection();
+    }
 
     public function open_db_connection() {
         $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -13,8 +17,16 @@ class Database
             echo "Kimono's OOP database connection is fully functioning!";
         }
     }
-}
 
+    public function query($sql) {
+        $result = mysqli_query($this->connection, $sql);
+        if (!$result) {
+            die("Query failed");
+        }
+        return $result;
+    }
+
+
+}
 $database = new Database();
-$database->open_db_connection();
 ?>
