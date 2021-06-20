@@ -31,8 +31,6 @@ class Database
         $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($this->connection->connect_errno) {
             die("Database connection failed" . $this->connection->connect_error);
-        } else {
-            echo "Kimono's OOP database connection is fully functioning!";
         }
     }
 
@@ -42,7 +40,6 @@ class Database
      */
     public function query($sql) {
         $result = $this->connection->query($sql);
-        $this->confirm_query($result);
         return $result;
     }
 

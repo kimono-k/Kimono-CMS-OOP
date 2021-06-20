@@ -1,6 +1,4 @@
 <?php
-
-
 class User
 {
    public function find_all_users() {
@@ -9,5 +7,4 @@ class User
        return $result_set;
    }
 }
-
 ?>
