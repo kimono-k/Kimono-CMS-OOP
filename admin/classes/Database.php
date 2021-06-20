@@ -6,7 +6,7 @@ class Database
     public $connection; # maybe protected, we'll see.
 
     /**
-     * Database constructor.
+     * Database constructor
      */
     function __construct() {
         $this->open_db_connection();
@@ -51,7 +51,7 @@ class Database
      * @return mixed
      */
     public function escape_string($string) {
-        $escaped_string = $this->connection->mysqli_real_escape_string($string);
+        $escaped_string = $this->connection->real_escape_string($string);
         return $escaped_string;
     }
 
