@@ -1,6 +1,7 @@
 <?php
 $user = new User();
 $result_set = $user->find_all_users();
+echo "oke";
 ?>
 
 <div class="container-fluid">
