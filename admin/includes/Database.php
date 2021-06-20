@@ -9,24 +9,37 @@ class Database
         $this->open_db_connection();
     }
 
+    private function confirm_query($result) {
+        if ($result) {
+            die("The query is blessed by the elder gods" . $this->connection->error);
+        } else {
+            echo "The query has failed the elder gods";
+        }
+    }
+
     public function open_db_connection() {
-        $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        if (mysqli_connect_errno()) {
-            die("Database connection failed" . mysqli_error());
+        $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->connection->connect_errno) {
+            die("Database connection failed" . $this->connection->connect_error);
         } else {
             echo "Kimono's OOP database connection is fully functioning!";
         }
     }
 
     public function query($sql) {
-        $result = mysqli_query($this->connection, $sql);
-        if (!$result) {
-            die("Query failed");
-        }
+        $result = $this->connection->query($sql);
+        $this->confirm_query($result);
         return $result;
     }
 
+    public function escape_string($string) {
+        $escaped_string = $this->connection->mysqli_real_escape_string($string);
+        return $escaped_string;
+    }
 
+    public function the_insert_id() {
+        return $this->connection->insert_id;
+    }
 }
 $database = new Database();
 ?>
