@@ -1,6 +1,6 @@
 <?php
-$user = new User();
-$result_set = $user->find_all_users();
+$result_set = User::find_all_users();
+$found_user = User::find_user_by_id(1);
 ?>
 
 <div class="container-fluid">
@@ -18,13 +18,15 @@ $result_set = $user->find_all_users();
                         <th>First Name</th>
                     </tr>
                 </thead>
-
                 <tbody>
                 <?php while ($row = mysqli_fetch_array($result_set)) { ?>
                     <tr>
                         <td><?= $row['username']; ?></td>
                     </tr>
                 <?php } ?>
+                    <tr>
+                        <td><?= $found_user['username']; ?></td>
+                    </tr>
                 </tbody>
             </table>
 
