@@ -1,6 +1,12 @@
 <?php
 class User
 {
+    public $id;
+    public $username;
+    public $password;
+    public $first_name;
+    public $last_name;
+
     /**
     * Returns a all the users from the database
     * @return mixed
@@ -23,7 +29,7 @@ class User
 
     /**
      * An easy method to use in other functions to execute a SQL statement by passing in an argument
-     * Warning! - Returns SQL as a string make sure you convert to an array then you can iterate through the data
+     * Warning! - Returns SQL as a string make sure you convert this to an array then you can iterate through the data
      * @param $sql
      * @return mixed
      */
