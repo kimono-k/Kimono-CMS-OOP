@@ -28,6 +28,10 @@ $found_user = User::find_user_by_id(1);
                     <tr>
                         <!-- Initialize properties from user class -->
                         <td><?= $user->id; ?></td>
+                        <td><?= $user->username; ?></td>
+                        <td><?= $user->password; ?></td>
+                        <td><?= $user->first_name; ?></td>
+                        <td><?= $user->last_name; ?></td>
                     </tr>
                 <?php } ?>
 
