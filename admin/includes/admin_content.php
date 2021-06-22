@@ -27,16 +27,16 @@ $user = User::instantation($found_user);
                 <?php while ($row = mysqli_fetch_array($result_set)) { ?>
                     <tr>
                         <!-- Initialize properties from user class -->
-                        <td><?= $user->id = $row['id']; ?></td>
-                        <td><?= $user->username = $row['username']; ?></td>
-                        <td><?= $user->password = $row['password']; ?></td>
-                        <td><?= $user->first_name = $row['first_name']; ?></td>
-                        <td><?= $user->last_name = $row['last_name']; ?></td>
+                        <td><?= $row['id']; ?></td>
+                        <td><?= $row['username']; ?></td>
+                        <td><?= $row['password']; ?></td>
+                        <td><?= $row['first_name']; ?></td>
+                        <td><?= $row['last_name']; ?></td>
                     </tr>
                 <?php } ?>
                 <tr>
                     <!-- Initialize properties from user class -->
-                    <td><?= $user->username ?></td>
+                    <!-- <td> $user->username </td> -->
                 </tr>
                 </tbody>
             </table>
