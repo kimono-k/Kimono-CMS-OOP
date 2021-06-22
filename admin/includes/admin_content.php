@@ -1,7 +1,7 @@
 <?php
-$result_set = User::find_all_users();
+$users = User::find_all_users();
 $found_user = User::find_user_by_id(1);
-$user = User::instantation($found_user);
+//$user = User::instantation($found_user);
 ?>
 
 <div class="container-fluid">
@@ -24,16 +24,13 @@ $user = User::instantation($found_user);
                     </tr>
                 </thead>
                 <tbody>
-                <?php while ($row = mysqli_fetch_array($result_set)) { ?>
+                <?php foreach($users as $user) { ?>
                     <tr>
                         <!-- Initialize properties from user class -->
-                        <td><?= $row['id']; ?></td>
-                        <td><?= $row['username']; ?></td>
-                        <td><?= $row['password']; ?></td>
-                        <td><?= $row['first_name']; ?></td>
-                        <td><?= $row['last_name']; ?></td>
+                        <td><?= $user->id; ?></td>
                     </tr>
                 <?php } ?>
+
                 <tr>
                     <!-- Initialize properties from user class -->
                     <!-- <td> $user->username </td> -->
