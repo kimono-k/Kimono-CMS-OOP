@@ -1,7 +1,7 @@
 <?php
 $result_set = User::find_all_users();
 $found_user = User::find_user_by_id(1);
-$user = new User();
+$user = User::instantation($found_user);
 ?>
 
 <div class="container-fluid">
@@ -34,13 +34,10 @@ $user = new User();
                         <td><?= $user->last_name = $row['last_name']; ?></td>
                     </tr>
                 <?php } ?>
-                    <tr>
-                        <td><?= $user->id = $found_user['id']; ?></td>
-                        <td><?= $user->username = $found_user['username']; ?></td>
-                        <td><?= $user->password = $found_user['password']; ?></td>
-                        <td><?= $user->first_name = $found_user['first_name']; ?></td>
-                        <td><?= $user->last_name = $found_user['last_name']; ?></td>
-                    </tr>
+                <tr>
+                    <!-- Initialize properties from user class -->
+                    <td><?= $user->username ?></td>
+                </tr>
                 </tbody>
             </table>
 
