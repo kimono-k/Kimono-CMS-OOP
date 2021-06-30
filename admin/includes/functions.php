@@ -11,4 +11,10 @@ function classAutoLoader($class) {
 
 # Autoloader - Loads the classes needed for a specific page
 spl_autoload_register("classAutoLoader");
+
+
+function redirect($location) {
+    header("Location: {$location}");
+}
+
 ?>
