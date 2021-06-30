@@ -18,6 +18,7 @@ class User
     */
    public static function find_all_users() {
        return self::find_this_query("SELECT * FROM users");
+
    }
 
     /**
@@ -27,8 +28,9 @@ class User
      */
    public static function find_user_by_id($user_id) {
        global $database;
-       $data = self::find_this_query("SELECT * FROM users WHERE id = $user_id LIMIT 1");
-       return $data[0]; # array of objects, thus no mysqli_fetch_array
+       $the_result_array = self::find_this_query("SELECT * FROM users WHERE id = $user_id LIMIT 1");
+
+       return !empty($the_result_array) ? $the_result_array[0] : false;
    }
 
     /**
