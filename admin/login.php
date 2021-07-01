@@ -11,7 +11,6 @@ if (isset($_POST['submit'])) {
 
     // Method to check the db user
     $user_found = User::verify_user($username, $password);
-
     if ($user_found) {
         $session->login($user_found);
         redirect("index.php");
@@ -20,10 +19,6 @@ if (isset($_POST['submit'])) {
         $username = "";
         $password = "";
     }
-// Kinda shitty else statement here, if the program doesn't work then use this ugly line of code again -_-
-//    } else {
-//    $username = "";
-//    $password = "";
 } else {
     $username = "";
     $password = "";
