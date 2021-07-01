@@ -16,17 +16,17 @@ if (isset($_POST['submit'])) {
         redirect("index.php");
     } else {
         $the_message = "Your password or username are incorrect";
-        $username = "";
-        $password = "";
     }
 } else {
     $username = "";
     $password = "";
+    $the_message = "";
 }
 ?>
 
 <div class="col-md-4 col-md-offset-3">
-    <h4 class="bg-danger"><?= $the_message = ""; ?></h4> <!-- Temp sloppy fix -->
+
+    <h4 class="bg-danger"><?= $the_message; ?></h4>
 
         <form id="login-id" action="" method="post">
 
@@ -37,8 +37,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password">
-
+                <input type="password" class="form-control" name="password" value="<?= htmlentities($password); ?>">
             </div>
 
             <div class="form-group">
