@@ -3,10 +3,29 @@ class Session
 {
     private $signed_in = false;
     public $user_id;
+    public $message;
 
     function __construct() {
         session_start(); # session variabelen tot mijn beschikking
         $this->check_the_login();
+        $this->check_message();
+    }
+
+    public function message($msg = "") {
+        if (!empty($msg)) {
+            $_SESSION['message'] = $msg;
+        } else {
+            return $this->message;
+        }
+    }
+
+    private function check_message() {
+        if (isset($_SESSION['message'])) {
+           $this->message = $_SESSION['message'];
+           unset($_SESSION['message']); # When you refresh you don't want to get the same message again
+        } else {
+            $this->message = "";
+        }
     }
 
     # getter
