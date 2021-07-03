@@ -97,8 +97,8 @@ class User
     }
 
     /**
-     * CRUD - Update
-     * Modifies records from the database
+     * CRUD System - Update
+     * Modifies a specific record from the database
      */
     public function update() {
         global $database;
@@ -108,6 +108,20 @@ class User
         $sql .= "first_name = '" . $database->escape_string($this->first_name) . "', ";
         $sql .= "last_name = '" . $database->escape_string($this->last_name) . "' ";
         $sql .= " WHERE id = " . $database->escape_string($this->id);
+
+        $database->query($sql);
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+    }
+
+    /**
+     * CRUD System - Delete
+     * Deletes a specific record from the database
+     */
+    public function delete() {
+        global $database;
+        $sql  = "DELETE FROM users ";
+        $sql .= "WHERE id =" . $database->escape_string($this->id);
+        $sql .= " LIMIT 1";
 
         $database->query($sql);
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;

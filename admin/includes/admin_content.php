@@ -12,9 +12,18 @@ $user = User::instantation($found_user);
 //$user->create();
 
 # Testing the insert method
-$user = User::find_user_by_id(4);
-$user->last_name = "Rico Suave bitches!";
-$user->update();
+//$user = User::find_user_by_id(4);
+//$user->last_name = "Rico Suave bitches!";
+//$user->update();
+
+# Testing the delete method
+# $user = User::find_user_by_id(x);
+
+if (!empty($user)) {
+    $user->delete();
+} else {
+    echo "You can't delete a record that doesn't exist";
+}
 ?>
 
 <div class="container-fluid">

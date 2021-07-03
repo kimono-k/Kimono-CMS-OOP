@@ -43,7 +43,7 @@ class Database
         return $result;
     }
 
-    /** Escapes the string to prevent hackers from doing mean stuff with our connection
+    /** Escapes the string to prevent SQL injections
      * @param $string
      * @return mixed
      */
