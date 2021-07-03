@@ -7,9 +7,35 @@ class User
     public $first_name;
     public $last_name;
 
-    private function has_the_attribute($the_attribute) {
-        $object_properties = get_object_vars($this);
-        return array_key_exists($the_attribute, $object_properties); # Does the value exists within the array?
+    protected static $db_table = "users";
+
+    public static function instantation($the_record) {
+        $the_object = new self;
+
+        foreach ($the_record as $the_attribute => $value) {
+            if ($the_object->has_the_attribute($the_attribute)) {
+                $the_object->$the_attribute = $value;
+            }
+        }
+        return $the_object;
+    }
+
+    /**
+     * An easy method to use in other functions to execute a SQL statement by passing in an argument
+     * Warning! - Returns SQL as a string make sure you convert this to an array then you can iterate through the data
+     * @param $sql
+     * @return mixed
+     */
+    public static function find_this_query($sql) {
+        global $database;
+        $result_set = $database->query($sql);
+        $the_object_array = [];
+
+        while ($row = mysqli_fetch_array($result_set)) {
+            $the_object_array[] = self::instantation($row);
+        }
+
+        return $the_object_array;
     }
 
     /**
@@ -32,24 +58,6 @@ class User
        return !empty($the_result_array) ? $the_result_array[0] : false;
    }
 
-    /**
-     * An easy method to use in other functions to execute a SQL statement by passing in an argument
-     * Warning! - Returns SQL as a string make sure you convert this to an array then you can iterate through the data
-     * @param $sql
-     * @return mixed
-     */
-   public static function find_this_query($sql) {
-        global $database;
-        $result_set = $database->query($sql);
-        $the_object_array = [];
-
-        while ($row = mysqli_fetch_array($result_set)) {
-            $the_object_array[] = self::instantation($row);
-        }
-
-        return $the_object_array;
-   }
-
    public static function verify_user($username, $password) {
        global $database;
        $username = $database->escape_string($username);
@@ -64,24 +72,13 @@ class User
        return !empty($the_result_array) ? $the_result_array[0] : false;
    }
 
-    public static function instantation($the_record) {
-        $the_object = new self;
-
-        foreach ($the_record as $the_attribute => $value) {
-            if ($the_object->has_the_attribute($the_attribute)) {
-                $the_object->$the_attribute = $value;
-            }
-        }
-        return $the_object;
-    }
-
     /**
      * CRUD System - Create
      * Inserts new data into the database
      */
     public function create() {
        global $database;
-       $sql  = "INSERT INTO users (username, password, first_name, last_name)";
+       $sql  = "INSERT INTO " .self::$db_table . " (username, password, first_name, last_name)";
        $sql .= "VALUES ('";
        $sql .= $database->escape_string($this->username) . "', '";
        $sql .= $database->escape_string($this->password) . "', '";
@@ -102,7 +99,7 @@ class User
      */
     public function update() {
         global $database;
-        $sql  = "UPDATE users SET ";
+        $sql  = "UPDATE " .self::$db_table . " SET ";
         $sql .= "username = '" . $database->escape_string($this->username) . "', ";
         $sql .= "password = '" . $database->escape_string($this->password) . "', ";
         $sql .= "first_name = '" . $database->escape_string($this->first_name) . "', ";
@@ -114,17 +111,30 @@ class User
     }
 
     /**
+     * Checks if the id already exists, if it does than update the record, if not create a new record
+     * @return bool
+     */
+    public function save() {
+        return isset($this->id) ? $this->update() : $this->create();
+    }
+
+    /**
      * CRUD System - Delete
      * Deletes a specific record from the database
      */
     public function delete() {
         global $database;
-        $sql  = "DELETE FROM users ";
+        $sql  = "DELETE FROM " .self::$db_table . " ";
         $sql .= "WHERE id =" . $database->escape_string($this->id);
         $sql .= " LIMIT 1";
 
         $database->query($sql);
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+    }
+
+    private function has_the_attribute($the_attribute) {
+        $object_properties = get_object_vars($this);
+        return array_key_exists($the_attribute, $object_properties); # Does the value exists within the array?
     }
 }
 ?>

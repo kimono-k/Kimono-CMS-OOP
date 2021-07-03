@@ -17,13 +17,23 @@ $user = User::instantation($found_user);
 //$user->update();
 
 # Testing the delete method
-# $user = User::find_user_by_id(x);
+//$user = User::find_user_by_id(x);
+//
+//if (!empty($user)) {
+//    $user->delete();
+//} else {
+//    echo "You can't delete a record that doesn't exist";
+//}
 
-if (!empty($user)) {
-    $user->delete();
-} else {
-    echo "You can't delete a record that doesn't exist";
-}
+# Testing the save method when the id exists
+//$user = User::find_user_by_id(3);
+//$user->username = "Jongjing";
+//$user->save();
+
+# Testing the save method when the id doesn't exist
+//$user = new User();
+//$user->username = "Bongling";
+//$user->save();
 ?>
 
 <div class="container-fluid">
