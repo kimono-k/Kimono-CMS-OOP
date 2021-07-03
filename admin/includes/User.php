@@ -7,7 +7,7 @@ class User
     public $first_name;
     public $last_name;
 
-    protected static $db_table = "users";
+    protected static $db_table = "users"; # change this to the db table name to make it work
 
     public static function instantation($the_record) {
         $the_object = new self;
@@ -78,7 +78,9 @@ class User
      */
     public function create() {
        global $database;
-       $sql  = "INSERT INTO " .self::$db_table . " (username, password, first_name, last_name)";
+       $properties = $this->properties();
+
+       $sql  = "INSERT INTO " .self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
        $sql .= "VALUES ('";
        $sql .= $database->escape_string($this->username) . "', '";
        $sql .= $database->escape_string($this->password) . "', '";
@@ -130,6 +132,10 @@ class User
 
         $database->query($sql);
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+    }
+
+    protected function properties() {
+        return get_object_vars($this);
     }
 
     private function has_the_attribute($the_attribute) {
