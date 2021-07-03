@@ -4,12 +4,17 @@ $found_user = User::find_user_by_id(1);
 $user = User::instantation($found_user);
 
 # Testing the create method
-$user = new User();
-$user->username = "Moonbyul";
-$user->password = "solar123";
-$user->first_name = "Solar";
-$user->last_name = "wow";
-$user->create();
+//$user = new User();
+//$user->username = "Moonbyul";
+//$user->password = "solar123";
+//$user->first_name = "Solar";
+//$user->last_name = "wow";
+//$user->create();
+
+# Testing the insert method
+$user = User::find_user_by_id(4);
+$user->last_name = "Rico Suave bitches!";
+$user->update();
 ?>
 
 <div class="container-fluid">
