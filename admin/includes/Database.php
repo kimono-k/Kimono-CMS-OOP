@@ -52,11 +52,11 @@ class Database
         return $escaped_string;
     }
 
-    /** Insert the id
+    /** Find and insert the auto incremented id to the database
      * @return mixed
      */
     public function the_insert_id() {
-        return $this->connection->insert_id;
+        return mysqli_insert_id($this->connection);
     }
 }
 $database = new Database();

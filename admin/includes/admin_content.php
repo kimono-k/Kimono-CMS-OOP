@@ -2,6 +2,14 @@
 $users = User::find_all_users();
 $found_user = User::find_user_by_id(1);
 $user = User::instantation($found_user);
+
+# Testing the create method
+$user = new User();
+$user->username = "Moonbyul";
+$user->password = "solar123";
+$user->first_name = "Solar";
+$user->last_name = "wow";
+$user->create();
 ?>
 
 <div class="container-fluid">
