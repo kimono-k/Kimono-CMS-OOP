@@ -1,19 +1,15 @@
 <?php
 $users = User::find_all_users();
-$found_user = User::find_user_by_id(1);
-$user = User::instantation($found_user);
+//$found_user = User::find_user_by_id(1);
+//$user = User::instantation($found_user);
 
 # Testing the create method
-//$user = new User();
-//$database = new Database();
-//$user->username = "Moonbyul";
-//$user->password = "solar123";
-//$user->first_name = "Solar";
-//$user->last_name = "wow";
-//$user->create();
-//if (!$user->create()) {
-//    die("Query failed" . mysqli_error($database->connection));
-//}
+$user = new User();
+$user->username = "Django";
+$user->password = "solar123";
+$user->first_name = "Solar";
+$user->last_name = "wow";
+$user->create();
 
 # Testing the insert method
 //$user = User::find_user_by_id(4);

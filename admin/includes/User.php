@@ -8,6 +8,7 @@ class User
     public $last_name;
 
     protected static $db_table = "users"; # change this to the db table name to make it work
+    protected static $db_table_fields = ['username', 'password', 'first_name', 'last_name'];
 
     public static function instantation($the_record) {
         $the_object = new self;
@@ -80,12 +81,8 @@ class User
        global $database;
        $properties = $this->properties();
 
-       $sql  = "INSERT INTO " .self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
-       $sql .= "VALUES ('". implode("','", array_values($properties)) . "')";
-       $sql .= $database->escape_string($this->username) . "', '";
-       $sql .= $database->escape_string($this->password) . "', '";
-       $sql .= $database->escape_string($this->first_name) . "', '";
-       $sql .= $database->escape_string($this->last_name) . "')";
+       $sql  = "INSERT INTO " . self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
+       $sql .= "VALUES ('". implode("','", array_values($properties)) ."')";
 
        if ($database->query($sql)) {
            $this->id = $database->the_insert_id();
@@ -135,7 +132,15 @@ class User
     }
 
     protected function properties() {
-        return get_object_vars($this);
+        $properties = [];
+
+        foreach (self::$db_table_fields as $db_field) {
+            if (property_exists($this, $db_field)) {
+                $properties[$db_field] = $this->$db_field;
+            }
+        }
+
+        return $properties;
     }
 
     private function has_the_attribute($the_attribute) {
