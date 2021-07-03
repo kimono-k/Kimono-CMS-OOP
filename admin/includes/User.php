@@ -81,7 +81,7 @@ class User
        $properties = $this->properties();
 
        $sql  = "INSERT INTO " .self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
-       $sql .= "VALUES ('";
+       $sql .= "VALUES ('". implode("','", array_values($properties)) . "')";
        $sql .= $database->escape_string($this->username) . "', '";
        $sql .= $database->escape_string($this->password) . "', '";
        $sql .= $database->escape_string($this->first_name) . "', '";
