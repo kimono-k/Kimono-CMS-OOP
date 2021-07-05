@@ -1,40 +1,51 @@
 <?php include("includes/header.php"); ?>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Top navigation -->
-        <?php include("includes/top_nav.php"); ?>
+<?php if (!$session->is_signed_in()) { redirect("login.php"); } ?>
 
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <?php include("includes/side_nav.php"); ?>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Top navigation -->
+    <?php include("includes/top_nav.php"); ?>
 
-        <!-- /.navbar-collapse -->
-    </nav>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <?php include("includes/side_nav.php"); ?>
 
-    <!-- Admin content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Upload
-                        <small>Subheading</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Blank Page
-                        </li>
-                    </ol>
-                </div>
+    <!-- /.navbar-collapse -->
+</nav>
+
+<!-- Admin content -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Upload
+                    <small>Subheading</small>
+                </h1>
+
+                <div class="col-md-6">
+
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <input type="text" name="title">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="file_upload">
+                    </div>
+
+                    <input type="submit" name="submit">
+
+                </form>
+
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
 
 <?php include("includes/footer.php"); ?>
