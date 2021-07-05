@@ -79,7 +79,7 @@ class User
      */
     public function create() {
        global $database;
-       $properties = $this->properties();
+       $properties = $this->clean_properties();
 
        $sql  = "INSERT INTO " . self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
        $sql .= "VALUES ('". implode("','", array_values($properties)) ."')";
@@ -146,6 +146,21 @@ class User
         }
 
         return $properties;
+    }
+
+    /**
+     * Makes sure that the submitted data will be escaped to prevent SQL injections
+     * @return array
+     */
+    protected function clean_properties() {
+        global $database;
+        $clean_properties = [];
+
+        foreach ($this->properties() as $key => $value) {
+            $clean_properties[$key] = $database->escape_string($value);
+        }
+
+        return $clean_properties;
     }
 
     private function has_the_attribute($the_attribute) {
