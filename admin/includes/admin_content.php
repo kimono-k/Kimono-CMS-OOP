@@ -1,5 +1,5 @@
 <?php
-$users = User::find_all_users();
+$users = User::find_all();
 //$found_user = User::find_user_by_id(1);
 //$user = User::instantation($found_user);
 
