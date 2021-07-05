@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 
                 <div class="col-md-6">
 
-                <p><?= isset($message) ? $message : ""; ?></p>
+                <h2><?= isset($message) ? $message : ""; ?></h2>
 
                 <form action="upload.php" method="post" enctype="multipart/form-data">
 
