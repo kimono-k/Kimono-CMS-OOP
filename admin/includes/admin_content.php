@@ -2,14 +2,21 @@
 $users = User::find_all();
 //$found_user = User::find_user_by_id(1);
 //$user = User::instantation($found_user);
+$photos = Photo::find_all();
 
-# Testing the create method
-$user = new User();
-$user->username = "nigelritfeld";
-$user->password = "nigel123";
-$user->first_name = "Nigel";
-$user->last_name = "Ritfeld";
-$user->create();
+# Testing the create method for user
+//$user = new User();
+//$user->username = "nigelritfeld";
+//$user->password = "nigel123";
+//$user->first_name = "Nigel";
+//$user->last_name = "Ritfeld";
+//$user->create();
+
+# Testing the create method for photos
+$photo = new Photo();
+$photo->title = "Solar";
+$photo->size = 20;
+$photo->create();
 
 # Testing the update method
 //$user = User::find_user_by_id(10);
@@ -48,6 +55,34 @@ $user->create();
                 <small>Subheading</small>
             </h1>
 
+            <h2>Photos table</h2>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Filename</th>
+                    <th>Type</th>
+                    <th>Size</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($photos as $photo) { ?>
+                    <tr>
+                        <!-- Initialize properties from photo class -->
+                        <td><?= $photo->photo_id; ?></td>
+                        <td><?= $photo->title; ?></td>
+                        <td><?= $photo->description; ?></td>
+                        <td><?= $photo->filename; ?></td>
+                        <td><?= $photo->type; ?></td>
+                        <td><?= $photo->size; ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+
+            <h2>Users table</h2>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -69,11 +104,6 @@ $user->create();
                         <td><?= $user->last_name; ?></td>
                     </tr>
                 <?php } ?>
-
-                <tr>
-                    <!-- Initialize properties from user class -->
-                    <!-- <td> $user->username </td> -->
-                </tr>
                 </tbody>
             </table>
 
