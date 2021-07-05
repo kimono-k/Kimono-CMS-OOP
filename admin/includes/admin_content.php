@@ -4,17 +4,20 @@ $users = User::find_all_users();
 //$user = User::instantation($found_user);
 
 # Testing the create method
-$user = new User();
-$user->username = "Django";
-$user->password = "solar123";
-$user->first_name = "Solar";
-$user->last_name = "wow";
-$user->create();
+//$user = new User();
+//$user->username = "Django";
+//$user->password = "solar123";
+//$user->first_name = "Solar";
+//$user->last_name = "wow";
+//$user->create();
 
-# Testing the insert method
-//$user = User::find_user_by_id(4);
-//$user->last_name = "Rico Suave bitches!";
-//$user->update();
+# Testing the update method
+$user = User::find_user_by_id(10);
+$user->username = "Papi";
+$user->password = "rico123";
+$user->first_name = "Rico";
+$user->last_name = "Suave";
+$user->update();
 
 # Testing the delete method
 //$user = User::find_user_by_id(x);
