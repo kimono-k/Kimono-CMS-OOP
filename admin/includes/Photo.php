@@ -10,7 +10,7 @@ class Photo extends DbObject
 
     public $tmp_path;
     public $upload_directory = "images";
-    public $custom_errors = [];
+    public $errors = [];
     public $upload_errors_array = [
     UPLOAD_ERR_OK           => "There is no error",
     UPLOAD_ERR_INI_SIZE     => "The uploaded file exceeds the upload_max_filesize directive",
@@ -21,8 +21,27 @@ class Photo extends DbObject
     UPLOAD_ERR_CANT_WRITE   => "A PHP extension stopped the file upload."
 ];
 
-
     protected static $db_table = "photos"; # change this to the db table name to make it work
     protected static $db_table_fields = ['photo_id', 'title', 'description', 'filename', 'type', 'size'];
+
+    /**
+     * Checks if the file is set, sets properties but doesn't save it!
+     * This is like passing $_FILES['uploaded_file'] as an argument
+     * @param $file
+     */
+    public function set_file($file) {
+        if (empty($file) || !$file || !is_array($file)) {
+            $this->errors[] = "There was no file uploaded here";
+            return false;
+        } elseif ($file['error'] != 0) {
+            $this->errors[] = $this->upload_errors_array[$file['error']];
+            return false;
+        } else {
+            $this->filename = basename($file['name']);
+            $this->tmp_path = $file['tmp_name'];
+            $this->type = $file['type'];
+            $this->size = $file['size'];
+        }
+    }
 }
 ?>
