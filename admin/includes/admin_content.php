@@ -5,10 +5,10 @@ $users = User::find_all();
 
 # Testing the create method
 $user = new User();
-$user->username = "2B";
-$user->password = "nierautomata123";
-$user->first_name = "2B";
-$user->last_name = "No.2 Type B";
+$user->username = "nigelritfeld";
+$user->password = "nigel123";
+$user->first_name = "Nigel";
+$user->last_name = "Ritfeld";
 $user->create();
 
 # Testing the update method
