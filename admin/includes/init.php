@@ -1,6 +1,6 @@
 <?php
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-define('SITE_ROOT', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'kimonocms');
+define('SITE_ROOT', __DIR__ . DS . '..' . DS . '..');
 defined('INCLUDES_PATH') ? null : define('INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'includes');
 
 require_once("functions.php");
