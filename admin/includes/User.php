@@ -15,11 +15,11 @@ class User extends DbObject
        $username = $database->escape_string($username);
        $password = $database->escape_string($password);
 
-       $sql  = "SELECT * FROM " . self::$db_table . " WHERE ";
+       $sql  = "SELECT * FROM " . static::$db_table . " WHERE ";
        $sql .= "username = '{$username}' ";
        $sql .= "AND password = '{$password}' ";
        $sql .= "LIMIT 1";
-       $the_result_array = self::find_this_query($sql);
+       $the_result_array = static::find_this_query($sql);
 
        return !empty($the_result_array) ? $the_result_array[0] : false;
    }
@@ -32,7 +32,7 @@ class User extends DbObject
        global $database;
        $properties = $this->clean_properties();
 
-       $sql  = "INSERT INTO " . self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
+       $sql  = "INSERT INTO " . static::$db_table . "(" . implode(",", array_keys($properties)) . ")";
        $sql .= "VALUES ('". implode("','", array_values($properties)) ."')";
 
        if ($database->query($sql)) {
@@ -57,7 +57,7 @@ class User extends DbObject
             $properties_pairs[] = "{$key} = '{$value}' ";
         }
 
-        $sql  = "UPDATE " .self::$db_table . " SET ";
+        $sql  = "UPDATE " .static::$db_table . " SET ";
         $sql .= implode(", ", $properties_pairs);
         $sql .= " WHERE id = " . $database->escape_string($this->id);
 
@@ -80,7 +80,7 @@ class User extends DbObject
      */
     public function delete() {
         global $database;
-        $sql  = "DELETE FROM " .self::$db_table . " ";
+        $sql  = "DELETE FROM " .static::$db_table . " ";
         $sql .= "WHERE id =" . $database->escape_string($this->id);
         $sql .= " LIMIT 1";
 
@@ -91,7 +91,7 @@ class User extends DbObject
     protected function properties() {
         $properties = [];
 
-        foreach (self::$db_table_fields as $db_field) {
+        foreach (static::$db_table_fields as $db_field) {
             if (property_exists($this, $db_field)) {
                 $properties[$db_field] = $this->$db_field;
             }

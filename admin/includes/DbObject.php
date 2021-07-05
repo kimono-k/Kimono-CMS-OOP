@@ -6,7 +6,7 @@ class DbObject
      * @return mixed
      */
     public static function find_all() {
-        return self::find_this_query("SELECT * FROM " . self::$db_table . " ");
+        return static::find_this_query("SELECT * FROM " . static::$db_table . " "); # static:: refers to child
     }
 
     /**
@@ -16,7 +16,7 @@ class DbObject
      */
     public static function find_by_id($user_id) {
         global $database;
-        $the_result_array = self::find_this_query("SELECT * FROM " . self::$db_table . " WHERE id = $user_id LIMIT 1");
+        $the_result_array = static::find_this_query("SELECT * FROM " . static::$db_table . " WHERE id = $user_id LIMIT 1");
 
         return !empty($the_result_array) ? $the_result_array[0] : false;
     }
@@ -33,14 +33,15 @@ class DbObject
         $the_object_array = [];
 
         while ($row = mysqli_fetch_array($result_set)) {
-            $the_object_array[] = self::instantation($row);
+            $the_object_array[] = static::instantation($row);
         }
 
         return $the_object_array;
     }
 
     public static function instantation($the_record) {
-        $the_object = new self;
+        $calling_class = get_called_class(); # Gets the name of the class the static method is called in.
+        $the_object = new $calling_class;
 
         foreach ($the_record as $the_attribute => $value) {
             if ($the_object->has_the_attribute($the_attribute)) {
