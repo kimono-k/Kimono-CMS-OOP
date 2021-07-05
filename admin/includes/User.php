@@ -95,6 +95,7 @@ class User
     /**
      * CRUD System - Update
      * Modifies a specific record from the database
+     * @return bool
      */
     public function update() {
         global $database;
