@@ -11,12 +11,12 @@ class DbObject
 
     /**
      * Returns an array with specific user by its id
-     * @param $user_id
+     * @param $id
      * @return mixed
      */
-    public static function find_by_id($user_id) {
+    public static function find_by_id($id) {
         global $database;
-        $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $user_id LIMIT 1");
+        $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $id LIMIT 1");
 
         return !empty($the_result_array) ? $the_result_array[0] : false;
     }

@@ -1,7 +1,7 @@
 <?php
 class Photo extends DbObject
 {
-    public $photo_id;
+    public $id;
     public $title;
     public $description;
     public $filename;
@@ -22,7 +22,7 @@ class Photo extends DbObject
     ];
 
     protected static $db_table = "photos"; # change this to the db table name to make it work
-    protected static $db_table_fields = ['photo_id', 'title', 'description', 'filename', 'type', 'size'];
+    protected static $db_table_fields = ['id', 'title', 'description', 'filename', 'type', 'size'];
 
     /**
      * Checks if the file is set, sets properties but doesn't save it!
@@ -51,7 +51,7 @@ class Photo extends DbObject
 
     public function save()
     {
-        if ($this->photo_id) {
+        if ($this->id) {
             $this->update();
         } else {
             if (!empty($this->errors)) {

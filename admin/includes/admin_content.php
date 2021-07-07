@@ -2,7 +2,7 @@
 echo INCLUDES_PATH;
 
 $users = User::find_all();
-//$found_user = User::find_user_by_id(1);
+//$found_user = User::find_by_id(1);
 //$user = User::instantation($found_user);
 $photos = Photo::find_all();
 
@@ -15,13 +15,13 @@ $photos = Photo::find_all();
 //$user->create();
 
 # Testing the create method for photos
-$photo = new Photo();
-$photo->title = "Solar";
-$photo->size = 20;
-$photo->create();
+//$photo = new Photo();
+//$photo->title = "Solar";
+//$photo->size = 20;
+//$photo->create();
 
 # Testing the update method
-//$user = User::find_user_by_id(10);
+//$user = User::find_by_id(10);
 //$user->username = "Papi";
 //$user->password = "rico123";
 //$user->first_name = "Rico";
@@ -29,7 +29,7 @@ $photo->create();
 //$user->update();
 
 # Testing the delete method
-//$user = User::find_user_by_id(x);
+//$user = User::find_by_id(x);
 //
 //if (!empty($user)) {
 //    $user->delete();
@@ -38,9 +38,16 @@ $photo->create();
 //}
 
 # Testing the save method when the id exists
-//$user = User::find_user_by_id(3);
+//$user = User::find_by_id(1);
+////echo "<br>";
+////echo $user->username;
 //$user->username = "Jongjing";
 //$user->save();
+
+# Check photo
+$photo = Photo::find_by_id(15);
+echo "<br>";
+echo $photo->filename;
 
 # Testing the save method when the id doesn't exist
 //$user = new User();

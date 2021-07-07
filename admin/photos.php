@@ -39,10 +39,10 @@ $photos = Photo::find_all();
                     <?php foreach ($photos as $photo) { ?>
                         <tr>
                             <!-- Initialize properties from photo class -->
-                            <td><?= $photo->photo_id; ?></td>
+                            <td><?= $photo->id; ?></td>
                             <td><img src="<?= $photo->picture_path(); ?>" alt="Image not loaded" width="150" height="100">
                                 <div class="pictures-link">
-                                    <a href="delete_photo.php/?id=<?= $photo->photo_id; ?>">Delete</a>
+                                    <a href="delete_photo.php/?id=<?= $photo->id; ?>">Delete</a>
                                     <a href="#">Edit</a>
                                     <a href="#">View</a>
                                 </div>

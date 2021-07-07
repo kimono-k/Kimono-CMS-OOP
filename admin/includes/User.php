@@ -23,5 +23,8 @@ class User extends DbObject
 
        return !empty($the_result_array) ? $the_result_array[0] : false;
    }
+
+
+
 }
 ?>
