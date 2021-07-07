@@ -57,33 +57,6 @@ $photo->create();
                 <small>Subheading</small>
             </h1>
 
-            <h2>Photos table</h2>
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Filename</th>
-                    <th>Type</th>
-                    <th>Size</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach($photos as $photo) { ?>
-                    <tr>
-                        <!-- Initialize properties from photo class -->
-                        <td><?= $photo->photo_id; ?></td>
-                        <td><?= $photo->title; ?></td>
-                        <td><?= $photo->description; ?></td>
-                        <td><?= $photo->filename; ?></td>
-                        <td><?= $photo->type; ?></td>
-                        <td><?= $photo->size; ?></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-
             <h2>Users table</h2>
             <table class="table table-bordered table-hover">
                 <thead>
