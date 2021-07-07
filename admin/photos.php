@@ -40,7 +40,7 @@ $photos = Photo::find_all();
                         <tr>
                             <!-- Initialize properties from photo class -->
                             <td><?= $photo->photo_id; ?></td>
-                            <td><img src="https://source.unsplash.com/62x62/?animal" alt=""></td>
+                            <td><img src="<?= $photo->picture_path(); ?>" alt="Image not loaded" width="150" height="100"></td>
                             <td><?= $photo->title; ?></td>
                             <td><?= $photo->description; ?></td>
                             <td><?= $photo->filename; ?></td>
