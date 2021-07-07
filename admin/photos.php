@@ -40,7 +40,13 @@ $photos = Photo::find_all();
                         <tr>
                             <!-- Initialize properties from photo class -->
                             <td><?= $photo->photo_id; ?></td>
-                            <td><img src="<?= $photo->picture_path(); ?>" alt="Image not loaded" width="150" height="100"></td>
+                            <td><img src="<?= $photo->picture_path(); ?>" alt="Image not loaded" width="150" height="100">
+                                <div class="pictures-link">
+                                    <a href="delete_photo.php/?id=<?= $photo->photo_id; ?>">Delete</a>
+                                    <a href="#">Edit</a>
+                                    <a href="#">View</a>
+                                </div>
+                            </td>
                             <td><?= $photo->title; ?></td>
                             <td><?= $photo->description; ?></td>
                             <td><?= $photo->filename; ?></td>
