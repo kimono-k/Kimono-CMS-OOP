@@ -3,8 +3,10 @@ class Photo extends DbObject
 {
     public $id;
     public $title;
+    public $caption;
     public $description;
     public $filename;
+    public $alternate_text;
     public $type;
     public $size;
 
@@ -22,7 +24,7 @@ class Photo extends DbObject
     ];
 
     protected static $db_table = "photos"; # change this to the db table name to make it work
-    protected static $db_table_fields = ['id', 'title', 'description', 'filename', 'type', 'size'];
+    protected static $db_table_fields = ['id', 'title', 'caption', 'description', 'filename', 'alternate_text', 'type', 'size'];
 
     /**
      * Checks if the file is set, sets properties but doesn't save it!
