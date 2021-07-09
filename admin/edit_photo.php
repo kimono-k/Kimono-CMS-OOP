@@ -1,6 +1,8 @@
 <?php include("includes/header.php"); ?>
 
-<?php if (!$session->is_signed_in()) { redirect("login.php"); } ?>
+<?php if (!$session->is_signed_in()) {
+    redirect("login.php");
+} ?>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -13,15 +15,21 @@
         <!-- /.navbar-collapse -->
     </nav>
 
+<?php
+$photos = Photo::find_all();
+?>
+
     <!-- Admin content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row">
-                <h1 class="page-header">
-                    Photos
-                    <small>Subheading</small>
-                </h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Edit Photo
+                        <small>Subheading</small>
+                    </h1>
+                </div>
 
                 <div class="col-md-8">
                     <div class="form-group">
@@ -45,6 +53,5 @@
                 </div>
             </div>
         </div>
-    </div>
 
 <?php include("includes/footer.php"); ?>
