@@ -23,10 +23,10 @@ $users = User::find_all();
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Users
-                        <small>Subheading</small>
-                    </h1>
+
+                    <h1 class="page-header">Users</h1>
+                    <a href="add_user.php" class="btn btn-primary">Add User</a>
+
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>

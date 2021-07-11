@@ -11,7 +11,7 @@ class User extends DbObject
     public $upload_directory = "images";
     public $image_placeholder = "http://placehold.it/200x200&text=image";
 
-    protected static $db_table = "users"; # change this to the db table name to make it work
+    protected static $db_table = "users"; # change this to the db table name to make it workS
     protected static $db_table_fields = ['username', 'user_image', 'password', 'first_name', 'last_name'];
 
     public function image_path_and_placeholder()
