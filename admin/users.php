@@ -1,5 +1,7 @@
 <?php include("includes/header.php"); ?>
 
+<?php if (!$session->is_signed_in()) { redirect("login.php"); } ?>
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Top navigation -->
@@ -11,6 +13,10 @@
         <!-- /.navbar-collapse -->
     </nav>
 
+<?php
+$users = User::find_all();
+?>
+
     <!-- Admin content -->
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -21,20 +27,38 @@
                         Users
                         <small>Subheading</small>
                     </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Blank Page
-                        </li>
-                    </ol>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Photo</th>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($users as $user) { ?>
+                            <tr>
+                                <!-- Initialize properties from User class -->
+                                <td><?= $user->id; ?></td>
+                                <td><img class="admin-User-thumbnail" src="<?= $user->user_image; ?>" alt="Image not loaded"></td>
+                                <td><?= $user->username; ?>
+                                    <div class="actions-link">
+                                        <a href="delete_user.php?id=<?= $user->id; ?>">Delete</a>
+                                        <a href="edit_user.php?id=<?= $user->id; ?>">Edit</a>
+                                        <a href="#">View</a>
+                                    </div>
+                                </td>
+                                <td><?= $user->first_name; ?></td>
+                                <td><?= $user->last_name; ?></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
 
 <?php include("includes/footer.php"); ?>
