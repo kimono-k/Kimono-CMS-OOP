@@ -42,7 +42,7 @@ $users = User::find_all();
                             <tr>
                                 <!-- Initialize properties from User class -->
                                 <td><?= $user->id; ?></td>
-                                <td><img class="admin-User-thumbnail" src="<?= $user->user_image; ?>" alt="Image not loaded"></td>
+                                <td><img class="admin-user-thumbnail user_image" src="<?= $user->image_path_and_placeholder(); ?>" alt="Image not loaded"></td>
                                 <td><?= $user->username; ?>
                                     <div class="actions-link">
                                         <a href="delete_user.php?id=<?= $user->id; ?>">Delete</a>
