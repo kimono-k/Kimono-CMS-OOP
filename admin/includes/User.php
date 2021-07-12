@@ -24,13 +24,11 @@ class User extends DbObject
     protected static $db_table = "users"; # change this to the db table name to make it workS
     protected static $db_table_fields = ['username', 'user_image', 'password', 'first_name', 'last_name'];
 
-    public function save_user_and_image()
+    public function upload_photo()
     {
-
         if (!empty($this->errors)) {
             return false;
         }
-
 
         if (empty($this->user_image) || empty($this->tmp_path)) {
             $this->errors[] = "The file was not available";
@@ -45,10 +43,8 @@ class User extends DbObject
         }
 
         if (move_uploaded_file($this->tmp_path, $target_path)) {
-            if ($this->create()) {
-                unset($this->tmp_path);
-                return true;
-            }
+            unset($this->tmp_path);
+            return true;
         } else {
             $this->errors[] = "The file directory probably does not have permission";
             return false;

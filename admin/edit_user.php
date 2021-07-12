@@ -26,7 +26,7 @@ if (isset($_POST['update'])) {
             $form_submission_error = "Make sure to check if you filled in all the fields 😆";
         } else {
             $user->set_file($_FILES['user_image']);
-            $user->save_user_and_image();
+            $user->upload_photo();
         }
     }
 }
