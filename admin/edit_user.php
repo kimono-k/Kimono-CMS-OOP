@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
         $user->password = $_POST['password'];
 
         # Form validation
-        if (empty($user->username) || empty($user->first_name) || empty($user->last_name) || empty($user->password)) {
+        if (empty($user->username) || empty($user->first_name) || empty($user->last_name) || empty($user->password) || empty($_FILES['user_image'])) {
             $form_submission_error = "Make sure to check if you filled in all the fields 😆";
         } else {
             $user->set_file($_FILES['user_image']);
@@ -88,6 +88,9 @@ if (isset($_POST['update'])) {
                     </div>
 
                     <div class="form-group">
+
+                        <a class="btn btn-danger" href="delete_user.php?id=<?= $user->id; ?>">Delete</a>
+                        
                         <input type="submit" name="update" class="btn btn-primary pull-right" value="Update">
                     </div>
                 </div>

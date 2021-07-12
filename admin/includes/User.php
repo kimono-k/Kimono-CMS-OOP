@@ -24,37 +24,13 @@ class User extends DbObject
     protected static $db_table = "users"; # change this to the db table name to make it workS
     protected static $db_table_fields = ['username', 'user_image', 'password', 'first_name', 'last_name'];
 
-
-    /**
-     * Checks if the file is set, sets properties but doesn't save it!
-     * This is like passing $_FILES['uploaded_file'] as an argument
-     * @param $file
-     */
-    public function set_file($file)
-    {
-        if (empty($file) || !$file || !is_array($file)) {
-            $this->errors[] = "There was no file uploaded here";
-            return false;
-        } elseif ($file['error'] != 0) {
-            $this->errors[] = $this->upload_errors_array[$file['error']];
-            return false;
-        } else {
-            $this->user_image = basename($file['name']);
-            $this->tmp_path = $file['tmp_name'];
-            $this->type = $file['type'];
-            $this->size = $file['size'];
-        }
-    }
-
     public function save_user_and_image()
     {
-        if ($this->id) {
-            $this->update();
-        } else {
-            if (!empty($this->errors)) {
-                return false;
-            }
+
+        if (!empty($this->errors)) {
+            return false;
         }
+
 
         if (empty($this->user_image) || empty($this->tmp_path)) {
             $this->errors[] = "The file was not available";

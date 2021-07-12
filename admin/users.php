@@ -27,7 +27,7 @@ $users = User::find_all();
                     <h1 class="page-header">Users</h1>
                     <a href="add_user.php" class="btn btn-primary">Add User</a>
 
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-hover table-dark">
                         <thead>
                         <tr>
                             <th>#</th>
