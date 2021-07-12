@@ -3,9 +3,11 @@
     border-radius: 40px;
 }
 
+/* Settings for resizing images without quality loss */
 .user_image {
-    width: 62px;
-    height: 62px;
+    width: 25%;
+    height: 10em;
+    border-radius: 50%;
 }
 
 .photo-info-box {

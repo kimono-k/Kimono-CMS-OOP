@@ -5,18 +5,19 @@
 } ?>
 
 <?php
-//$user = User::find_by_id($_GET['id']);
-//
-//if (isset($_POST['update'])) {
-//    if ($user) {
-//        $user->title = $_POST['title'];
-//        $user->caption = $_POST['caption'];
-//        $user->alternate_text = $_POST['alternate_text'];
-//        $user->description = $_POST['description'];
-//
-//        $user->save();
-//    }
-//}
+$user = new User();
+
+if (isset($_POST['create'])) {
+    if ($user) {
+        $user->username = $_POST['username'];
+        $user->first_name = $_POST['first_name'];
+        $user->last_name = $_POST['last_name'];
+        $user->password = $_POST['password'];
+
+        $user->set_file($_FILES['user_image']);
+        $user->save_user_and_image();
+    }
+}
 ?>
 
     <!-- Navigation -->
@@ -34,6 +35,7 @@
     <div id="page-wrapper">
     <div class="container-fluid">
         <!-- Page Heading -->
+
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Add User</h1>
@@ -42,25 +44,33 @@
             <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="col-md-8">
+
+                    <div class="form-group">
+                        <input type="file" name="user_image">
+                    </div>
                     
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="title" class="form-control">
+                        <input type="text" name="username" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" class="form-control">
+                        <input type="text" name="first_name" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="alternate_text" class="form-control">
+                        <input type="text" name="last_name" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" name="password" class="form-control">
+                        <input type="password" name="password" class="form-control" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="create" class="btn btn-primary">
                     </div>
                 </div>
 
