@@ -10,6 +10,13 @@ class Comment extends DbObject
     protected static $db_table = "comments"; # Change this to the db table name to make it works
     protected static $db_table_fields = ['id', 'photo_id', 'author', 'body'];
 
+    /**
+     * Creates a comment
+     * @param $photo_id
+     * @param string $author
+     * @param string $body
+     * @return Comment|false
+     */
     public static function create_comment($photo_id, $author = "Sooyoung", $body = "")
     {
         if (!empty($photo_id) && !empty($author) && !empty($body)) {
@@ -24,6 +31,15 @@ class Comment extends DbObject
             return false;
         }
     }
-}
 
+    public static function find_the_comments($photo_id = 0)
+    {
+        global $database;
+        $sql  = "SELECT * FROM " . self::$db_table;
+        $sql .= " WHERE photo_id = " . $database->escape_string($photo_id);
+        $sql .= " ORDER BY photo_id ASC";
+
+        return self::find_by_query($sql);
+    }
+}
 ?>
