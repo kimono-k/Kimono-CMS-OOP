@@ -159,7 +159,8 @@ $comments = Comment::find_the_comments($photo->id);
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading"><?= $comment->author; ?>
+                            <h4 class="media-heading">
+                                <?= $comment->author; ?>
                                 <small>August 25, 2014 at 9:30 PM</small>
                             </h4>
                             <?= $comment->body; ?>

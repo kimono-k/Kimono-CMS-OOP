@@ -1,5 +1,7 @@
 <?php include("includes/header.php"); ?>
 
+<?php if (!$session->is_signed_in()) { redirect("login.php"); } ?>
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Top navigation -->
@@ -11,30 +13,46 @@
         <!-- /.navbar-collapse -->
     </nav>
 
+<?php
+$comments = Comment::find_all();
+?>
+
     <!-- Admin content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Comments
-                        <small>Subheading</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Blank Page
-                        </li>
-                    </ol>
+
+                    <h1 class="page-header">Comments</h1>
+                    <a href="add_user.php" class="btn btn-primary">Add Comment</a>
+
+                    <table class="table table-hover table-dark">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Author</th>
+                            <th>Body</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($comments as $comment) { ?>
+                            <tr>
+                                <!-- Initialize properties from User class -->
+                                <td><?= $comment->id; ?></td>
+                                <td><?= $comment->author; ?>
+                                    <div class="actions-link">
+                                        <a href="delete_comment.php?id=<?= $comment->id; ?>">Delete</a>
+                                    </div>
+                                </td>
+                                <td><?= $comment->body; ?></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
 
 <?php include("includes/footer.php"); ?>
