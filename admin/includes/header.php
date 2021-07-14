@@ -34,6 +34,7 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
