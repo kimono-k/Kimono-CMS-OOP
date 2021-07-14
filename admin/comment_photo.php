@@ -30,10 +30,13 @@ $comments = Comment::find_the_comments($_GET['id']);
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row">
+
                 <div class="col-lg-12">
 
                     <h1 class="page-header">Comments</h1>
-                    <a href="add_user.php" class="btn btn-primary">Add Comment</a>
+                    <p>
+                    <span class="bg-success"><?= isset($session->message) ? $session->message : $session->message = "";  ?></span>
+                    </p>
 
                     <table class="table table-hover table-dark">
                         <thead>
@@ -50,7 +53,7 @@ $comments = Comment::find_the_comments($_GET['id']);
                                 <td><?= $comment->id; ?></td>
                                 <td><?= $comment->author; ?>
                                     <div class="actions-link">
-                                        <a href="delete_comment.php?id=<?= $comment->id; ?>">Delete</a>
+                                        <a href="delete_comment_photo.php?id=<?= $comment->id; ?>">Delete</a>
                                     </div>
                                 </td>
                                 <td><?= $comment->body; ?></td>
