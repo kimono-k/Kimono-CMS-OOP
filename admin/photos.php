@@ -37,6 +37,7 @@ $photos = Photo::find_all();
                         <th>Filename</th>
                         <th>Type</th>
                         <th>Size</th>
+                        <th>Comments</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,10 +46,10 @@ $photos = Photo::find_all();
                             <!-- Initialize properties from photo class -->
                             <td><?= $photo->id; ?></td>
                             <td><img class="admin-photo-thumbnail" src="<?= $photo->picture_path(); ?>" alt="Image not loaded">
-                                <div class="pictures-link">
+                                <div class="action-links">
                                     <a href="delete_photo.php?id=<?= $photo->id; ?>">Delete</a>
                                     <a href="edit_photo.php?id=<?= $photo->id; ?>">Edit</a>
-                                    <a href="#">View</a>
+                                    <a href="../photo_menu.php?id=<?= $photo->id; ?>">View</a>
                                 </div>
                             </td>
                             <td><?= $photo->title; ?></td>
@@ -56,6 +57,8 @@ $photos = Photo::find_all();
                             <td><?= $photo->filename; ?></td>
                             <td><?= $photo->type; ?></td>
                             <td><?= $photo->size; ?></td>
+                            <?php $comments = Comment::find_the_comments($photo->id); ?>
+                            <td><?= count($comments); ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>

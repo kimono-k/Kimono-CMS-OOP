@@ -45,9 +45,9 @@ $photos = Photo::find_all();
 //$user->save();
 
 # Check photo
-$photo = Photo::find_by_id(15);
-echo "<br>";
-echo $photo->filename;
+//$photo = Photo::find_by_id(15);
+//echo "<br>";
+//echo $photo->filename;
 
 # Testing the save method when the id doesn't exist
 //$user = new User();
