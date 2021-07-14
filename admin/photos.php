@@ -57,8 +57,10 @@ $photos = Photo::find_all();
                             <td><?= $photo->filename; ?></td>
                             <td><?= $photo->type; ?></td>
                             <td><?= $photo->size; ?></td>
-                            <?php $comments = Comment::find_the_comments($photo->id); ?>
-                            <td><?= count($comments); ?></td>
+                            <td>
+                                <a href="comment_photo.php?id=<?= $photo->id; ?>"><?= $comments = count(Comment::find_the_comments($photo->id)); ?></a>
+                            </td>
+
                         </tr>
                     <?php } ?>
                     </tbody>
