@@ -60,7 +60,6 @@ $photos = Photo::find_all();
                             <td>
                                 <a href="comment_photo.php?id=<?= $photo->id; ?>"><?= $comments = count(Comment::find_the_comments($photo->id)); ?></a>
                             </td>
-
                         </tr>
                     <?php } ?>
                     </tbody>
