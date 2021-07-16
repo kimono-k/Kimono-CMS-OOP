@@ -58,7 +58,7 @@ if (isset($_POST['update'])) {
                 <h1 class="page-header">Edit User</h1>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 user_image_box">
                 <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive edit_user_image" src="<?= $user->image_path_and_placeholder(); ?>" alt="Image not found"></a>
             </div>
 
@@ -92,7 +92,7 @@ if (isset($_POST['update'])) {
 
                     <div class="form-group">
 
-                        <a class="btn btn-danger" href="delete_user.php?id=<?= $user->id; ?>">Delete</a>
+                        <a id="user-id" class="btn btn-danger" href="delete_user.php?id=<?= $user->id; ?>">Delete</a>
                         
                         <input type="submit" name="update" class="btn btn-primary pull-right" value="Update">
                     </div>
