@@ -3,3 +3,15 @@
     height: 25vh !important;
     border-radius: 40% !important;
 }
+
+/* Home page pagination */
+.pager .active a {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.pager .active a:hover {
+    background-color: #000000 !important;
+    color: #ffffff;
+}
+
