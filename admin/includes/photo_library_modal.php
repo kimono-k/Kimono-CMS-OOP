@@ -22,7 +22,7 @@ $photos = Photo::find_all();
                         <?php foreach ($photos as $photo) { ?>
                             <div class="col-xs-2">
                                 <a role="checkbox" aria-checked="false" tabindex="0" id="" href="#" class="thumbnail">
-                                    <img class="modal_thumbnails img-responsive" src="<?= $photo->picture_path(); ?>" data="<!-- PHP CODE HERE-->">
+                                    <img class="modal_thumbnails img-responsive" src="<?= $photo->picture_path(); ?>" data="<?= $photo->id; ?>">
                                 </a>
                                 <div class="photo-id hidden"></div>
                             </div>
@@ -35,6 +35,7 @@ $photos = Photo::find_all();
 
                 <div class="col-md-3">
                     <div id="modal_sidebar"></div>
+
                 </div>
 
             </div><!--Modal Body-->

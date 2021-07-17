@@ -32,6 +32,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/dropzone.css">
+
     <link rel="stylesheet" href="css/styles.css">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

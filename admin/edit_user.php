@@ -24,12 +24,17 @@ if (isset($_POST['update'])) {
         $user->last_name = $_POST['last_name'];
         $user->password = $_POST['password'];
 
-        # Form validation
-        if (empty($user->username) || empty($user->first_name) || empty($user->last_name) || empty($user->password) || empty($_FILES['user_image'])) {
-            $form_submission_error = "Make sure to check if you filled in all the fields 😆";
+        # Form validation needs to added again check history of commits on GitHub
+        if (empty($_FILES['user_image'])) {
+            $user->save();
+            redirect("users.php");
+            $session->message("The user has been updated");
         } else {
             $user->set_file($_FILES['user_image']);
             $user->upload_photo();
+            $user->save();
+            $session->message("The user has been updated");
+            redirect("users.php");
         }
     }
 }
